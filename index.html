@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Arrosseria Coma Casa - Paellas y Fideuás Valencianas Para Llevar</title>
     <meta name="description" content="Auténticas paellas valencianas y fideuás para llevar. Tradición, sabor y calidad. Miércoles a Viernes 10:30-15:30. Llama: 930312997" />
     <meta name="author" content="Lovable" />
@@ -15,10 +15,788 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    <style>
+        :root {
+            --background: hsl(45, 100%, 97%);
+            --foreground: hsl(25, 35%, 15%);
+            --card: hsl(0, 0%, 100%);
+            --card-foreground: hsl(25, 35%, 15%);
+            --primary: hsl(25, 85%, 55%);
+            --primary-foreground: hsl(0, 0%, 100%);
+            --primary-glow: hsl(35, 95%, 65%);
+            --secondary-warm: hsl(15, 75%, 60%);
+            --secondary: hsl(35, 40%, 94%);
+            --secondary-foreground: hsl(25, 35%, 15%);
+            --muted: hsl(35, 30%, 96%);
+            --muted-foreground: hsl(25, 15%, 45%);
+            --accent: hsl(35, 90%, 88%);
+            --accent-foreground: hsl(25, 35%, 15%);
+            --border: hsl(35, 20%, 88%);
+            --gradient-warm: linear-gradient(135deg, hsl(25, 85%, 55%), hsl(35, 95%, 65%));
+            --gradient-hero: linear-gradient(180deg, hsl(45, 100%, 97%), hsl(35, 90%, 88%));
+            --shadow-warm: 0 10px 30px -10px hsl(25, 85%, 55%, 0.3);
+            --shadow-glow: 0 0 40px hsl(35, 95%, 65%, 0.4);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius: 0.5rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.5;
+            background-color: var(--background);
+            color: var(--foreground);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        .header {
+            background: var(--card);
+            box-shadow: var(--shadow-warm);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .header-links {
+            display: none;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .header-links {
+                display: flex;
+            }
+        }
+
+        .header-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--foreground);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .header-link:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            border: 1px solid transparent;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--primary-foreground);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-glow);
+        }
+
+        .btn-warm {
+            background: var(--gradient-warm);
+            color: var(--primary-foreground);
+        }
+
+        .btn-warm:hover {
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-lg {
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            background: var(--gradient-hero);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
+        }
+
+        .hero-content {
+            position: relative;
+            text-align: center;
+            color: white;
+            padding: 2rem 1rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            max-width: 42rem;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (min-width: 768px) {
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (min-width: 640px) {
+            .hero-actions {
+                flex-direction: row;
+            }
+        }
+
+        /* Products Section */
+        .products {
+            padding: 5rem 0;
+            background: var(--background);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 3rem;
+            }
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--muted-foreground);
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            gap: 2rem;
+            max-width: 72rem;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-warm);
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-8px);
+        }
+
+        .card-image {
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .card-description {
+            color: var(--muted-foreground);
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: var(--gradient-hero);
+        }
+
+        .contact-grid {
+            display: grid;
+            gap: 1.5rem;
+            max-width: 72rem;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .contact-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 3rem;
+            height: 3rem;
+            margin: 0 auto 1rem;
+            color: var(--primary);
+        }
+
+        .contact-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .schedule-item {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .schedule-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .schedule-days {
+            font-weight: 500;
+            color: var(--foreground);
+        }
+
+        .schedule-hours {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: var(--primary-foreground);
+            padding: 3rem 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+                text-align: left;
+            }
+        }
+
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .footer-subtitle {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-foreground);
+            text-decoration: none;
+            margin-bottom: 0.75rem;
+            transition: var(--transition-smooth);
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-link {
+                justify-content: flex-start;
+            }
+        }
+
+        .footer-link:hover {
+            color: var(--primary-glow);
+        }
+
+        .footer-schedule {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.875rem;
+        }
+
+        .footer-schedule div {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+        }
+
+        .heart {
+            width: 1rem;
+            height: 1rem;
+            color: #f87171;
+        }
+
+        /* Icons */
+        .icon {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .icon-lg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .icon-xl {
+            width: 3rem;
+            height: 3rem;
+        }
+
+        /* Mobile menu button */
+        .mobile-btn {
+            display: block;
+        }
+
+        @media (min-width: 768px) {
+            .mobile-btn {
+                display: none;
+            }
+        }
+
+        /* Utilities */
+        .text-center {
+            text-align: center;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    La Arrosseria Coma Casa
+                </div>
+                
+                <div class="header-links">
+                    <a href="tel:930312997" class="header-link">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                        930 312 997
+                    </a>
+                    <a href="https://www.instagram.com/larrosseriacomacasa/" target="_blank" rel="noopener noreferrer" class="header-link">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                        </svg>
+                        @larrosseriacomacasa
+                    </a>
+                    <a href="https://www.google.com/maps/place/Arrosseria+Com+a+casa/@41.7027474,2.4361444,17z/data=!3m1!4b1!4m6!3m5!1s0x12a4cdcb348d124b:0xedd90c50e195aa5f!8m2!3d41.7027474!4d2.4361444!16s%2Fg%2F11jxc1lb6z?hl=es&entry=ttu&g_ep=EgoyMDI1MDgzMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="btn btn-warm">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        Ubicación
+                    </a>
+                </div>
+                
+                <div class="mobile-btn">
+                    <a href="tel:930312997" class="btn btn-primary">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                        Llamar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="hero-paella.jpg" alt="Deliciosa paella de mariscos de La Arrosseria Com a Casa" class="hero-img">
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    La Arrosseria Coma Casa
+                </h1>
+                <p class="hero-subtitle">
+                    Auténticas paellas y fideuás valencianas para llevar. 
+                    Tradición, sabor y calidad en cada plato.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="tel:930312997" class="btn btn-warm btn-lg">
+                        <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                        Hacer Pedido: 930 312 997
+                    </a>
+                    <a href="https://www.google.com/maps/place/Arrosseria+Com+a+casa/@41.7027474,2.4361444,17z/data=!3m1!4b1!4m6!3m5!1s0x12a4cdcb348d124b:0xedd90c50e195aa5f!8m2!3d41.7027474!4d2.4361444!16s%2Fg%2F11jxc1lb6z?hl=es&entry=ttu&g_ep=EgoyMDI1MDgzMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg">
+                        <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        Cómo Llegar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    Nuestras Especialidades
+                </h2>
+                <p class="section-subtitle">
+                    Elaboradas con los mejores ingredientes y siguiendo las recetas tradicionales valencianas
+                </p>
+            </div>
+            
+            <div class="products-grid">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="paella-mixta.jpg" alt="Paella valenciana tradicional">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Paella Valenciana</h3>
+                        <p class="card-description">
+                            La auténtica paella con pollo, conejo, verduras y el mejor azafrán
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-image">
+                        <img src="paella-mixta.jpg" alt="Paella mixta con mariscos y carne">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Paella Mixta</h3>
+                        <p class="card-description">
+                            Combinación perfecta de mar y montaña con mariscos y carnes
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-image">
+                        <img src="fideua.jpg" alt="Fideuá con mariscos frescos">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Fideuá</h3>
+                        <p class="card-description">
+                            Deliciosa fideuá con fideos finos, mariscos frescos y sofrito casero
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    Contacto y Horarios
+                </h2>
+                <p class="section-subtitle">
+                    Estamos aquí para servirte las mejores paellas
+                </p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="card contact-card">
+                    <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12,6 12,12 16,14"/>
+                    </svg>
+                    <h3 class="contact-title">Horarios</h3>
+                    <div class="text-sm">
+                        <div class="schedule-item">
+                            <div class="schedule-days">Miércoles a Viernes</div>
+                            <div class="schedule-hours">10:30 - 15:30</div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-days">Sábados, Domingos y Festivos</div>
+                            <div class="schedule-hours">10:30 - 16:00</div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-days">Lunes y Martes</div>
+                            <div class="schedule-hours">Cerrado</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card contact-card">
+                    <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                    <h3 class="contact-title">Teléfono</h3>
+                    <p class="mb-4">Llámanos para hacer tu pedido</p>
+                    <a href="tel:930312997" class="btn btn-warm w-full">
+                        930 312 997
+                    </a>
+                </div>
+                
+                <div class="card contact-card">
+                    <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    <h3 class="contact-title">Ubicación</h3>
+                    <p class="text-sm mb-4">Carretera del Montseny, 7<br>08461 Sant Esteve de Palautordera, Barcelona</p>
+                    <a href="https://www.google.com/maps/place/Arrosseria+Com+a+casa/@41.7027474,2.4361444,17z/data=!3m1!4b1!4m6!3m5!1s0x12a4cdcb348d124b:0xedd90c50e195aa5f!8m2!3d41.7027474!4d2.4361444!16s%2Fg%2F11jxc1lb6z?hl=es&entry=ttu&g_ep=EgoyMDI1MDgzMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="btn btn-warm w-full">
+                        Ver en Maps
+                    </a>
+                </div>
+                
+                <div class="card contact-card">
+                    <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                    <h3 class="contact-title">Instagram</h3>
+                    <p class="mb-4">Síguenos para ver nuestras creaciones</p>
+                    <a href="https://www.instagram.com/larrosseriacomacasa/" target="_blank" rel="noopener noreferrer" class="btn btn-warm w-full">
+                        @larrosseriacomacasa
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 class="footer-title">La Arrosseria Coma Casa</h3>
+                    <p class="footer-description">
+                        Auténticas paellas y fideuás valencianas elaboradas con 
+                        los mejores ingredientes y mucho amor por la tradición.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="footer-subtitle">Contacto</h4>
+                    <ul class="footer-links">
+                        <li>
+                            <a href="tel:930312997" class="footer-link">
+                                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                                930 312 997
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/larrosseriacomacasa/" target="_blank" rel="noopener noreferrer" class="footer-link">
+                                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                    <path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                                </svg>
+                                @larrosseriacomacasa
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.google.com/maps/place/Arrosseria+Com+a+casa/@41.7027474,2.4361444,17z/data=!3m1!4b1!4m6!3m5!1s0x12a4cdcb348d124b:0xedd90c50e195aa5f!8m2!3d41.7027474!4d2.4361444!16s%2Fg%2F11jxc1lb6z?hl=es&entry=ttu&g_ep=EgoyMDI1MDgzMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="footer-link">
+                                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                                Carretera del Montseny, 7
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-subtitle">Horarios</h4>
+                    <div class="footer-schedule">
+                        <div>Mié-Vie: 10:30-15:30</div>
+                        <div>Sáb-Dom: 10:30-16:00</div>
+                        <div>Lun-Mar: Cerrado</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>
+                    Hecho con 
+                    <svg class="heart" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    para los amantes de la auténtica cocina valenciana
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
 </html>
