@@ -31,7 +31,7 @@ const HeroSection = () => {
             </Button>
           </a>
           <a 
-            href="https://share.google/kte6MINWscNMjr2pk" 
+            href="https://www.google.com/maps/place/Arrosseria+Com+a+casa/@41.7027474,2.4361444,17z/data=!3m1!4b1!4m6!3m5!1s0x12a4cdcb348d124b:0xedd90c50e195aa5f!8m2!3d41.7027474!4d2.4361444!16s%2Fg%2F11jxc1lb6z?hl=es&entry=ttu&g_ep=EgoyMDI1MDgzMC4wIKXMDSoASAFQAw%3D%3D" 
             target="_blank" 
             rel="noopener noreferrer"
           >

@@ -50,13 +50,14 @@ const ContactSection = () => {
             </CardContent>
           </Card>
           
-          <Card className="shadow-warm hover:shadow-glow transition-smooth">
+            <Card className="shadow-warm hover:shadow-glow transition-smooth">
             <CardContent className="p-6 text-center">
               <MapPin className="w-12 h-12 mx-auto mb-4 text-primary" />
               <h3 className="text-xl font-semibold mb-4 text-primary">Ubicación</h3>
-              <p className="text-muted-foreground mb-4">Visítanos o consulta como llegar</p>
+              <p className="text-sm text-muted-foreground mb-2">Carretera del Montseny, 7</p>
+              <p className="text-sm text-muted-foreground mb-4">08461 Sant Esteve de Palautordera, Barcelona</p>
               <a 
-                href="https://share.google/kte6MINWscNMjr2pk" 
+                href="https://www.google.com/maps/place/Arrosseria+Com+a+casa/@41.7027474,2.4361444,17z/data=!3m1!4b1!4m6!3m5!1s0x12a4cdcb348d124b:0xedd90c50e195aa5f!8m2!3d41.7027474!4d2.4361444!16s%2Fg%2F11jxc1lb6z?hl=es&entry=ttu&g_ep=EgoyMDI1MDgzMC4wIKXMDSoASAFQAw%3D%3D" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -73,7 +74,7 @@ const ContactSection = () => {
               <h3 className="text-xl font-semibold mb-4 text-primary">Instagram</h3>
               <p className="text-muted-foreground mb-4">Síguenos para ver nuestras creaciones</p>
               <a 
-                href="https://instagram.com/larrosseriacomacasa" 
+                href="https://www.instagram.com/larrosseriacomacasa/" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
