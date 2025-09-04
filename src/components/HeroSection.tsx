@@ -8,9 +8,9 @@ const HeroSection = () => {
         <img 
           src="/lovable-uploads/e849750a-699d-48b1-bcba-3bb0bfd4f80c.png" 
           alt="Deliciosa paella de mariscos de La Arrosseria Com a Casa"
-          className="w-full h-full object-cover opacity-80"
+          className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-primary/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/40"></div>
       </div>
       
       <div className="relative container mx-auto px-4 py-32 text-center text-white">
