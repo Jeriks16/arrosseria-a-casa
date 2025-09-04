@@ -1,14 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Phone, MapPin } from "lucide-react";
-import heroImage from "@/assets/hero-paella.jpg";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen bg-gradient-hero">
       <div className="absolute inset-0">
         <img 
-          src={heroImage} 
-          alt="Deliciosa paella tradicional valenciana"
+          src="/lovable-uploads/e849750a-699d-48b1-bcba-3bb0bfd4f80c.png" 
+          alt="Deliciosa paella de mariscos de La Arrosseria Com a Casa"
           className="w-full h-full object-cover opacity-80"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-primary/60"></div>
